@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Web component</h1>
+
+    <native-component></native-component>
+    <native-component></native-component>
+
+    <template id="content">
+      <style>
+        h2 {
+          color: red;
+        }
+      </style>
+      <h2>Component from template</h2>
+      <p>
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur
+        adipisicing elit. Animi, earum.
+      </p>
+    </template>
+
+    <script>
+      class NativeComponent extends HTMLElement {
+        constructor() {
+          super();
+          console.log('Web component');
+          const contentOfComponentsPassedToTemplate = document.getElementById(
+            'content',
+          );
+
+          this.attachShadow({
+            mode: 'open',
+          }).innerHTML = contentOfComponentsPassedToTemplate.innerHTML;
+          /*           this.attachShadow({
+            mode: 'open',
+          }).innerHTML = `<p>Element shown from <b>shadow root</b></p>`; */
+        }
+      }
+
+      customElements.define('native-component', NativeComponent);
+    </script>
+  </body>
+</html>
