@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html" />
+<link rel="import" href="./basic-component.html" />
 
 <dom-module id="polymer-component">
   <template>
@@ -6,8 +7,28 @@
       :host {
         display: block;
       }
+
+      .polymer-component {
+        border: 2px solid red;
+        margin-bottom: 20px;
+      }
+
+      .basic-component {
+        border: 2px solid blue;
+      }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <section class="polymer-component">
+      <h2>Hello from [[prop1]]!</h2>
+      <ul>
+        <li>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse, aut.
+        </li>
+      </ul>
+    </section>
+
+    <section class="basic-component">
+      <basic-component></basic-component>
+    </section>
   </template>
 
   <script>
