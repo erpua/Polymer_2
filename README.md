@@ -4,7 +4,7 @@ Intorduction Lesson
 
 markup tips:
 
--ul>li*3{item $} => *without backslash
+  ul>li*3{item $} => *without backslash
 
  <ul>
    <li>item 1</li>
