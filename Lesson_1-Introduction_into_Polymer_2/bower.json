@@ -1,0 +1,20 @@
+{
+  "name": "Lesson_1-Introduction_into_Polymer_2",
+  "homepage": "https://github.com/erpua/Polymer_2",
+  "authors": [
+    "Yevgeniy Tovtin <zhe.tovtin@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^3.4.1"
+  }
+}
