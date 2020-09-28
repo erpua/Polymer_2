@@ -1,0 +1,32 @@
+<link rel="import" href="../polymer/polymer-element.html" />
+
+<dom-module id="music-instrument">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello from [[name]]!</h2>
+    <p>Guitar type: [[clasification]]</p>
+  </template>
+
+  <script>
+    class MusicInstrument extends Polymer.Element {
+      static get is() {
+        return 'music-instrument';
+      }
+      static get properties() {
+        return {
+          name: String,
+          clasification: {
+            type: String,
+            value: 'acoustic',
+          },
+        };
+      }
+    }
+
+    window.customElements.define(MusicInstrument.is, MusicInstrument);
+  </script>
+</dom-module>

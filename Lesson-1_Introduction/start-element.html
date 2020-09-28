@@ -1,0 +1,35 @@
+<link rel="import" href="../polymer/polymer-element.html" />
+<link rel="import" href="./components/music-instrument.html" />
+
+<dom-module id="start-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+    <music-instrument
+      name="Music instrument"
+      clasification="Acoustic sounds"
+    ></music-instrument>
+  </template>
+
+  <script>
+    class StartElement extends Polymer.Element {
+      static get is() {
+        return 'start-element';
+      }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'start-element',
+          },
+        };
+      }
+    }
+
+    window.customElements.define(StartElement.is, StartElement);
+  </script>
+</dom-module>
