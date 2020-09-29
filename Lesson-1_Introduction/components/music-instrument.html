@@ -7,8 +7,9 @@
         display: block;
       }
     </style>
-    <h2>Hello from [[name]]!</h2>
-    <p>Guitar type: [[clasification]]</p>
+    <h2>Music instrument: [[name]]!</h2>
+    <p on-click="captureDescription">[[description]]</p>
+    <p>Clasification: [[clasification]]</p>
   </template>
 
   <script>
@@ -23,7 +24,13 @@
             type: String,
             value: 'acoustic',
           },
+          description: String,
         };
+      }
+
+      captureDescription(e) {
+        console.log('event:', e);
+        this.description = this.description.toUpperCase();
       }
     }
 

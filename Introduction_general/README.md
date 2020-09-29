@@ -44,11 +44,11 @@ bower installation process ...
 
 After completed:
 
-- bower install ( all dependencies )
+- bower install ( all dependencies / might be automatic)
 
 - polymer serve
 
-markupt tips:
+MARKUP TIPS:
 
 -"ul > li \* 3 { item \$} " => without backslash
 
