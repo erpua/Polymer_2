@@ -1,0 +1,73 @@
+<link rel="import" href="./music-instrument.html" />
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html" />
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html" />
+<link
+  rel="import"
+  href="../bower_components/paper-spinner/paper-spinner.html"
+/>
+
+<dom-module id="instruments-list">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      music-instrument {
+        background-color: grey;
+        color: #ffffff;
+      }
+    </style>
+
+    <iron-ajax
+      id="ajax"
+      url="http://www.mocky.io/v2/5d80eeb13000004cf28e737a"
+      last-response="{{instruments}}"
+      loading="{{loading}}"
+    ></iron-ajax>
+    <paper-spinner active="[[loading]]"></paper-spinner>
+    <!--  auto - prtperty in iron ajax to automate backend download -->
+    <!--     <paper-spinner active="[[loading]]"></paper-spinner> -->
+
+    <!-- <paper-spinner-lite active class="orange"></paper-spinner-lite>
+    <paper-spinner-lite active class="green"></paper-spinner-lite>
+    <paper-spinner-lite active class="thin"></paper-spinner-lite>
+    <paper-spinner-lite active class="thick"></paper-spinner-lite> -->
+
+    <template is="dom-repeat" items="{{instruments}}" as="instrument">
+      <music-instrument
+        name="[[instrument.speed]]"
+        clasification="[[instrument.releaseDate]]"
+        description="[[instrument.provider]]"
+      >
+      </music-instrument>
+    </template>
+
+    <button on-click="obtainData">PrintLn data</button>
+  </template>
+
+  <script>
+    class InstrumentsList extends Polymer.Element {
+      static get is() {
+        return 'instruments-list';
+      }
+      static get properties() {
+        return {
+          instruments: {
+            type: Array,
+            value: function () {
+              return [];
+            },
+          },
+          loading: Boolean,
+        };
+      }
+
+      obtainData() {
+        this.$.ajax.generateRequest();
+      }
+    }
+
+    window.customElements.define(InstrumentsList.is, InstrumentsList);
+  </script>
+</dom-module>

@@ -1,4 +1,7 @@
-<link rel="import" href="../polymer/polymer-element.html" />
+<link
+  rel="import"
+  href="../bower_components/iron-collapse/iron-collapse.html"
+/>
 
 <dom-module id="music-instrument">
   <template>
@@ -6,10 +9,18 @@
       :host {
         display: block;
       }
+
+      iron-collapse {
+        --iron-collapse-transition-duration: 1000ms;
+      }
     </style>
-    <h2>Music instrument: [[name]]!</h2>
-    <p on-click="captureDescription">[[description]]</p>
-    <p>Clasification: [[clasification]]</p>
+
+    <h2 on-click="toggle">Music instrument: [[name]]!</h2>
+
+    <iron-collapse opened="[[isOpened]]">
+      <p on-click="captureDescription">Description: [[description]]</p>
+      <p>Clasification: [[clasification]]</p>
+    </iron-collapse>
   </template>
 
   <script>
@@ -25,12 +36,20 @@
             value: 'acoustic',
           },
           description: String,
+          isOpened: {
+            type: Boolean,
+            value: false,
+          },
         };
       }
 
       captureDescription(e) {
         console.log('event:', e);
         this.description = this.description.toUpperCase();
+      }
+
+      toggle() {
+        this.isOpened = !this.isOpened;
       }
     }
 

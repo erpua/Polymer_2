@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html" />
-<link rel="import" href="./components/music-instrument.html" />
+<link rel="import" href="./components/instruments-list.html" />
 
 <dom-module id="start-element">
   <template>
@@ -7,13 +7,31 @@
       :host {
         display: block;
       }
+
+      music-instrument {
+        background-color: grey;
+        color: #ffffff;
+      }
     </style>
     <h2>Hello [[prop1]]!</h2>
-    <music-instrument
+    <instruments-list></instruments-list>
+    <!--  <music-instrument
       name="Guitar"
       clasification="Acoustic sounds"
       description="The guitar is a string instrument which is played by plucking the strings."
     ></music-instrument>
+
+    <music-instrument
+      name="Violin"
+      clasification="Acoustic sounds"
+      description="The Violin ..."
+    ></music-instrument>
+
+    <music-instrument
+      name="Fortepiano"
+      clasification="Acoustic sounds"
+      description="The Fortepiano."
+    ></music-instrument> -->
   </template>
 
   <script>
