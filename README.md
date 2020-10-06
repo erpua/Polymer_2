@@ -17,10 +17,9 @@ Update npm.
 
 Install the latest version of Bower.
 
-- npm install -g bower
-  Install Polymer CLI.
+- Install bower components globally => npm install -g bower
 
-npm install -g polymer-cli
+- Install Polymer CLI globally => npm install -g polymer-cli
 
 - polymer init
   ? Which starter template would you like to use?
@@ -42,6 +41,6 @@ bower installation process ...
 
 After completed:
 
-- bower install ( all dependencies / might be automatic)
+- bower install ( all dependencies of this project / might be automaticly)
 
 - polymer serve
