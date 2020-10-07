@@ -23,10 +23,10 @@
       id="ajax"
       url="http://www.mocky.io/v2/5d80eeb13000004cf28e737a"
       last-response="{{instruments}}"
-      loading="{{loading}}"
+      loading="{{_loading}}"
     ></iron-ajax>
-    <paper-spinner active="[[loading]]"></paper-spinner>
-    <!--  auto - prtperty in iron ajax to automate backend download -->
+    <paper-spinner active="[[_loading]]"></paper-spinner>
+    <!--  auto - property in iron ajax to automate backend download -->
     <!--     <paper-spinner active="[[loading]]"></paper-spinner> -->
 
     <!-- <paper-spinner-lite active class="orange"></paper-spinner-lite>
@@ -59,7 +59,7 @@
               return [];
             },
           },
-          loading: Boolean,
+          _loading: Boolean,
         };
       }
 
