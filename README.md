@@ -4,6 +4,7 @@ Polymer SETUP:
 
 Make sure you have installed a version of Node.js supported by Polymer. To check the version of Node.js that you have installed, run:
 
+- Install NodeJS
 - node --version
   See the official node version support policy for more details.
 
@@ -12,11 +13,11 @@ Update npm.
 - npm install npm@latest -g
   Ensure that Git is installed.
 
+- Install Git
 - git --version
   If it isn't, you can find it on the Git downloads page.
 
-Install the latest version of Bower.
-
+- Install the latest version of Bower.
 - Install bower components globally => npm install -g bower
 
 - Install Polymer CLI globally => npm install -g polymer-cli

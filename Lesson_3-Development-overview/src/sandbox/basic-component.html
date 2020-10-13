@@ -1,0 +1,22 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+
+<dom-module id="basic-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin: 15px;
+      }
+    </style>
+  </template>
+
+  <script>
+    class BasicComponent extends Polymer.Element {
+      static get is() {
+        return 'basic-component';
+      }
+    }
+
+    window.customElements.define(BasicComponent.is, BasicComponent);
+  </script>
+</dom-module>
