@@ -1,4 +1,5 @@
-<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+<link rel="import" href="../../src/sandbox/basic-component.html" />
 
 <dom-module id="lessson-3-app">
   <template>
@@ -8,6 +9,8 @@
       }
     </style>
     <h2>Hello [[prop1]]!</h2>
+    <basic-component id="basic"></basic-component>
+    <button on-click="_maintain">Control property</button>
   </template>
 
   <script>
@@ -16,14 +19,27 @@
      * @polymer
      */
     class Lessson3App extends Polymer.Element {
-      static get is() { return 'lessson-3-app'; }
+      static get is() {
+        return 'lessson-3-app';
+      }
       static get properties() {
         return {
           prop1: {
             type: String,
-            value: 'lessson-3-app'
-          }
+            value: 'lessson-3-app',
+          },
+          propertyDefault: {
+            type: String,
+            value: 'lessson-3-app',
+          },
         };
+      }
+
+      _maintain() {
+        // this.$.basic.property = 'Changed property in lesson 3 by properties';
+        this.$.basic._changeProperty(
+          'property of basic component changed in lesson 3 by method',
+        );
       }
     }
 

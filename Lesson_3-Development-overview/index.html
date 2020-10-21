@@ -13,13 +13,21 @@
     <!-- See https://goo.gl/OOhYW5 -->
     <link rel="manifest" href="/manifest.json" />
 
-    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
-    <link rel="import" href="/src/lessson-3-app/lessson-3-app.html" />
+    <link rel="import" href="./src/lessson-3-app/lessson-3-app.html" />
     <link rel="import" href="./src/sandbox/basic-component.html" />
   </head>
   <body>
     <lessson-3-app></lessson-3-app>
-    <basic-component></basic-component>
+    <!-- <basic-component></basic-component> -->
+    <script>
+      const basicComponent = document.createElement('basic-component');
+      document.body.appendChild(basicComponent);
+      basicComponent.setAttribute(
+        'property',
+        'text changed from JS script main file',
+      );
+    </script>
   </body>
 </html>

@@ -8,12 +8,28 @@
         margin: 15px;
       }
     </style>
+
+    <h2>Basic component</h2>
+    <p>[[property]]</p>
   </template>
 
   <script>
     class BasicComponent extends Polymer.Element {
       static get is() {
         return 'basic-component';
+      }
+
+      static get properties() {
+        return {
+          property: {
+            type: String,
+            value: 'test',
+          },
+        };
+      }
+
+      _changeProperty(value) {
+        this.property = value;
       }
     }
 
