@@ -1,7 +1,14 @@
 # Polymer_2
 
-Polymer SETUP:
+VSCode Extentions:
 
+- Litelement and Polymer v2/v3 snippets
+- Polymer IDE
+- Polymer Syntax
+- Template Literal Editor
+- Import cost
+
+Polymer SETUP:
 Make sure you have installed a version of Node.js supported by Polymer. To check the version of Node.js that you have installed, run:
 
 - Install NodeJS
