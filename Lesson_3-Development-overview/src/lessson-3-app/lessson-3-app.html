@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html" />
 <link rel="import" href="../../src/sandbox/basic-component.html" />
+<link rel="import" href="../survey/survey-option.html" />
 
 <dom-module id="lessson-3-app">
   <template>
@@ -8,9 +9,11 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <!-- <h2>Hello [[prop1]]!</h2>
     <basic-component id="basic"></basic-component>
-    <button on-click="_maintain">Control property</button>
+    <button on-click="_maintain">Control property</button> -->
+    <survey-option answer="added answer property"></survey-option>
+    <survey-option answer="added new servey" property-boolean></survey-option>
   </template>
 
   <script>
@@ -35,12 +38,12 @@
         };
       }
 
-      _maintain() {
+      /*  _maintain() {
         // this.$.basic.property = 'Changed property in lesson 3 by properties';
         this.$.basic._changeProperty(
           'property of basic component changed in lesson 3 by method',
         );
-      }
+      } */
     }
 
     window.customElements.define(Lessson3App.is, Lessson3App);
