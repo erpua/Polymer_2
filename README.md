@@ -2,9 +2,11 @@
 
 VSCode Extentions:
 
+- Path Intellisense
 - Litelement and Polymer v2/v3 snippets
 - Polymer IDE
 - Polymer Syntax
+- Polymer Snippets
 - Template Literal Editor
 - Import cost
 

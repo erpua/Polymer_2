@@ -1,0 +1,49 @@
+<link rel="import" href="../survey/survey-option.html" />
+<dom-module id="survey-question">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <p>[[question]]</p>
+    <!-- 
+    <template is="dom-repeat" items="{{answers}}">
+      [[index]]
+      <survey-option answer="{{item}}" num="{{index}}"></survey-option>
+    </template> -->
+
+    <template is="dom-repeat" items="{{answers}}">
+      <survey-option answer="{{item}}" num="{{index}}"></survey-option>
+    </template>
+  </template>
+
+  <script>
+    /**
+     * `survey-question` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class SurveyQuestion extends Polymer.Element {
+      static get is() {
+        return 'survey-question';
+      }
+
+      static get properties() {
+        return {
+          question: String,
+          answers: {
+            type: Array,
+            value: ['Yes', 'No', 'Maybe'],
+          },
+        };
+      }
+    }
+
+    window.customElements.define(SurveyQuestion.is, SurveyQuestion);
+  </script>
+</dom-module>
