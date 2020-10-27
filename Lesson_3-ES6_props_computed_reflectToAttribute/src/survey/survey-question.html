@@ -5,18 +5,29 @@
       :host {
         display: block;
       }
-    </style>
 
+      div {
+        display: inline-block;
+        font-size: 0.8em;
+        background: orangered;
+        padding: 10px;
+        color: #fff;
+      }
+    </style>
+    <div>Time remaining: [[seconds]]</div>
     <p>[[question]]</p>
-    <!-- 
-    <template is="dom-repeat" items="{{answers}}">
-      [[index]]
-      <survey-option answer="{{item}}" num="{{index}}"></survey-option>
-    </template> -->
 
     <template is="dom-repeat" items="{{answers}}">
       <survey-option answer="{{item}}" num="{{index}}"></survey-option>
     </template>
+
+    <button on-click="_resetTime">Reset time</button>
+
+    <!--
+    <template is="dom-repeat" items="{{answers}}">
+      [[index]]
+      <survey-option answer="{{item}}" num="{{index}}"></survey-option>
+    </template> -->
   </template>
 
   <script>
@@ -40,7 +51,20 @@
             type: Array,
             value: ['Yes', 'No', 'Maybe'],
           },
+          seconds: {
+            type: Number,
+            value: 60,
+            readOnly: true,
+          },
         };
+      }
+
+      _resetTime() {
+        // this.seconds = 100; => NO
+        this._setSeconds(1000);
+        //this.answers.push('opther option') // NO
+        //this.push('answers', 'other option');
+        this.splice('answers', 1, 1);
       }
     }
 
