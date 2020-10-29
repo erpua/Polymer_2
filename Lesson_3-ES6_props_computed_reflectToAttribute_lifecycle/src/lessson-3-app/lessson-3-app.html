@@ -17,9 +17,12 @@
     <survey-option answer="Yes" called></survey-option> -->
 
     <survey-question
+      id="survey"
       question="Do you like Polymer 2?"
       seconds="500"
     ></survey-question>
+
+    <button on-click="_deleteSurvey">Remove survey</button>
   </template>
 
   <script>
@@ -50,6 +53,11 @@
           'property of basic component changed in lesson 3 by method',
         );
       } */
+
+      _deleteSurvey() {
+        this.shadowRoot.removeChild(this.$.survey);
+        this.$.survey.remove();
+      }
     }
 
     window.customElements.define(Lessson3App.is, Lessson3App);

@@ -1,0 +1,65 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+<link rel="import" href="../../src/sandbox/basic-component.html" />
+<link rel="import" href="../survey/survey-question.html" />
+
+<dom-module id="lessson-3-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <!-- <h2>Hello [[prop1]]!</h2>
+    <basic-component id="basic"></basic-component>
+    <button on-click="_maintain">Control property</button> -->
+
+    <!--   <survey-option answer="No"></survey-option>
+    <survey-option answer="Yes" called></survey-option> -->
+
+    <survey-question
+      id="survey"
+      question="Do you like Polymer 2?"
+      seconds="500"
+    ></survey-question>
+
+    <button on-click="_deleteSurvey">Remove survey</button>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class Lessson3App extends Polymer.Element {
+      static get is() {
+        return 'lessson-3-app';
+      }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'lessson-3-app',
+          },
+          propertyDefault: {
+            type: String,
+            value: 'lessson-3-app',
+          },
+        };
+      }
+
+      /*  _maintain() {
+        // this.$.basic.property = 'Changed property in lesson 3 by properties';
+        this.$.basic._changeProperty(
+          'property of basic component changed in lesson 3 by method',
+        );
+      } */
+
+      _deleteSurvey() {
+        this.shadowRoot.removeChild(this.$.survey);
+        this.$.survey.remove();
+      }
+    }
+
+    window.customElements.define(Lessson3App.is, Lessson3App);
+  </script>
+</dom-module>

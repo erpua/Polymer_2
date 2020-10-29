@@ -18,7 +18,11 @@
     <p>[[question]]</p>
 
     <template is="dom-repeat" items="{{answers}}">
-      <survey-option answer="{{item}}" num="{{index}}"></survey-option>
+      <survey-option
+        answer="{{item}}"
+        num="{{index}}"
+        on-custom-event="calledListener"
+      ></survey-option>
     </template>
 
     <button on-click="_resetTime">Reset time</button>
@@ -56,6 +60,7 @@
             value: 60,
             readOnly: true,
           },
+          timer: Object,
         };
       }
 
@@ -65,6 +70,39 @@
         //this.answers.push('opther option') // NO
         //this.push('answers', 'other option');
         this.splice('answers', 1, 1);
+      }
+
+      ready() {
+        super.ready();
+        this.countBack();
+        /*  window.addEventListener('mousemove', this.showMoving); */
+      }
+
+      countBack() {
+        this._setSeconds(this.seconds - 1);
+
+        this.timer = setTimeout(() => {
+          console.log('this.seconds: =>', this.seconds);
+          this.countBack();
+        }, 1000);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        clearTimeout(this.timer);
+        /*  window.removeEventListener('mousemove', this.showMoving); */
+      }
+
+      showMoving(e) {
+        /*     console.log('EVENT =>:', e); */
+        console.log('e.clientX', e.clientX);
+        console.log('e.clientY', e.clientY);
+      }
+
+      calledListener(e) {
+        console.log('made calledListener');
+        console.log('EVENT: =>', e);
+        console.log('clicked option: ', e.detail.id);
       }
     }
 

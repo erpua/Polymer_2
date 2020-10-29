@@ -1,0 +1,127 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+<link
+  rel="import"
+  href="../../bower_components/polymer/lib/elements/dom-if.html"
+/>
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html" />
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html" />
+
+<dom-module id="survey-option">
+  <template>
+    <style>
+      :host {
+        display: block;
+        border-bottom: 2px solid teal;
+      }
+
+      span {
+        display: inline-block;
+        position: relative;
+        top: 1px;
+      }
+
+      .checked {
+        color: green;
+      }
+
+      .unchecked {
+        color: grey;
+      }
+    </style>
+
+    <!--   <p on-click="_toggleProperty" class$="[[computedClass]]">
+      <iron-icon icon="[[computedIcon]]"></iron-icon>
+      <span> [[num]]. - [[answer]]</span>
+    </p> -->
+
+    <p on-click="toggle" class$="[[computedClass]]">
+      <iron-icon icon="[[computedIcon]]"></iron-icon>
+      <span> [[num]]. - [[answer]]</span>
+    </p>
+
+    <!-- 
+    <p hidden="[[propertyBoolean]]">hidden paragraph</p>
+    <p>[[answer]]</p>
+
+    <template is="dom-if" if="[[propertyBoolean]]">
+      <p>Yes option form template dom - if</p>
+    </template> 
+    
+    icons:check-box
+    icons:check-box-outline-blank
+  -->
+  </template>
+
+  <script>
+    class SurveyOption extends Polymer.Element {
+      static get is() {
+        return 'survey-option';
+      }
+
+      static get properties() {
+        return {
+          answer: String,
+          called: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+          },
+          /**
+             * Description for prop
+              PropertyName: {
+              type: Boolean|Date|Number|String|Array|Object,
+              computed: 'string',
+            },
+             */
+          computedIcon: {
+            type: String,
+            computed: '_calculateIcon(called)',
+          },
+          computedClass: {
+            type: String,
+            computed: '_calculateColor(called)',
+          },
+          num: Number,
+        };
+      }
+
+      _calculateIcon(called) {
+        if (called) return 'icons:check-box';
+        return 'icons:check-box-outline-blank';
+      }
+
+      _calculateColor(called) {
+        if (called) return 'checked';
+        return 'unchecked';
+      }
+
+      _toggleProperty() {
+        this.called = !this.called;
+      }
+
+      toggle() {
+        this.called = !this.called;
+        this.dispatchEvent(
+          new CustomEvent('custom-event', {
+            detail: {
+              id: this.num,
+            },
+          }),
+        );
+      }
+
+      ready() {
+        super.ready();
+        this.addEventListener('click', this.processClick);
+        /*   this.addEventListener('click', this.processClick.bind(this)); */
+      }
+
+      processClick() {
+        this.answer = 'another answer';
+        /*    console.log('click has been made'); */
+      }
+    }
+
+    window.customElements.define(SurveyOption.is, SurveyOption);
+  </script>
+</dom-module>

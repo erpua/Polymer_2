@@ -1,0 +1,93 @@
+<link rel="import" href="../survey/survey-option.html" />
+<dom-module id="survey-question">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      div {
+        display: inline-block;
+        font-size: 0.8em;
+        background: orangered;
+        padding: 10px;
+        color: #fff;
+      }
+    </style>
+    <div>Time remaining: [[seconds]]</div>
+    <p>[[question]]</p>
+
+    <template is="dom-repeat" items="{{answers}}">
+      <survey-option answer="{{item}}" num="{{index}}"></survey-option>
+    </template>
+
+    <button on-click="_resetTime">Reset time</button>
+
+    <!--
+    <template is="dom-repeat" items="{{answers}}">
+      [[index]]
+      <survey-option answer="{{item}}" num="{{index}}"></survey-option>
+    </template> -->
+  </template>
+
+  <script>
+    /**
+     * `survey-question` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class SurveyQuestion extends Polymer.Element {
+      static get is() {
+        return 'survey-question';
+      }
+
+      static get properties() {
+        return {
+          question: String,
+          answers: {
+            type: Array,
+            value: ['Yes', 'No', 'Maybe'],
+          },
+          seconds: {
+            type: Number,
+            value: 60,
+            readOnly: true,
+          },
+          timer: Object,
+        };
+      }
+
+      _resetTime() {
+        // this.seconds = 100; => NO
+        this._setSeconds(1000);
+        //this.answers.push('opther option') // NO
+        //this.push('answers', 'other option');
+        this.splice('answers', 1, 1);
+      }
+
+      ready() {
+        super.ready();
+        this.countBack();
+      }
+
+      countBack() {
+        this._setSeconds(this.seconds - 1);
+
+        this.timer = setTimeout(() => {
+          console.log('this.seconds: =>', this.seconds);
+          this.countBack();
+        }, 1000);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        clearTimeout(this.timer);
+      }
+    }
+
+    window.customElements.define(SurveyQuestion.is, SurveyQuestion);
+  </script>
+</dom-module>
