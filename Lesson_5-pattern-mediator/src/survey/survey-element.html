@@ -1,6 +1,10 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html" />
 <link
   rel="import"
+  href="../../bower_components/polymer/lib/elements/dom-if.html"
+/>
+<link
+  rel="import"
   href="../../bower_components/polymer/lib/mixins/gesture-event-listeners.html"
 />
 <link rel="import" href="./survey-questions.html" />
@@ -19,24 +23,33 @@
       }
     </style>
 
-    <!--  <survey-timer id="timer" on-finish-timer="cancelSurvey" on-track="drag">
-    </survey-timer>
+    <survey-timer
+      id="timer"
+      on-time-finish="cancelSurvey"
+      on-track="drag"
+    ></survey-timer>
 
-    <template is="dom-if" if="{{!cancelled}}">
+    <template is="dom-if" if="[[!cancelled]]">
       <survey-questions question="{{question}}"></survey-questions>
     </template>
 
-    <template is="dom-if" if="{{cancelled}}">
-      <p>Drag the timer to reset</p>
-    </template> -->
-
-    <survey-questions question="{{question}}"></survey-questions>
-
-    <p>Drag the timer to reset</p>
+    <template is="dom-if" if="[[cancelled]]">
+      <p>Drog timer to recover timer</p>
+    </template>
   </template>
 
   <script>
-    class SurveyElement extends Polymer.Element {
+    /**
+     * `survey-element` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    /*   class SurveyElement extends Polymer.Element   */
+    /* TU USE MIXIN GestureEventListener =>add  Polymer.GestureEventListeners( and Polymer.Element)*/
+    class SurveyElement extends Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {
         return 'survey-element';
       }
@@ -45,12 +58,12 @@
         return {
           cancelled: {
             type: Boolean,
-            value: true,
+            value: false,
           },
           question: {
             type: Object,
             value: {
-              question: 'Do you like Polymer 2?',
+              survey: 'Do you like Polymer 2?',
               options: ['Yes', 'No', 'Did not figure out yet'],
             },
           },
@@ -62,30 +75,25 @@
       }
 
       drag(e) {
-        //console.log(e);
         if (!this.cancelled) {
           return 0;
         }
-        if (e.detail.state == 'end') {
-          this.$.timer.style.left = '0px';
-          console.log('lo he puesto al final');
+        if (e.detail.state === 'end') {
+          this.$.timer.style.left = '0';
+          console.log(
+            'The state value has been changed BEFORE e.detail.dx >= 50',
+          );
           if (e.detail.dx >= 50) {
             this.cancelled = false;
             this.$.timer.reset();
+            console.log(
+              'The state value has been changed AFTER e.detail.dx >= 50',
+            );
           }
         } else {
           console.log(e.detail.dx);
           this.$.timer.style.left = e.detail.dx + 'px';
         }
-      }
-
-      /**
-       * Instance of the element is created/upgraded. Use: initializing state,
-       * set up event listeners, create shadow dom.
-       * @constructor
-       */
-      constructor() {
-        super();
       }
     }
 

@@ -19,6 +19,14 @@
   </template>
 
   <script>
+    /**
+     * `survey-timer` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
     class SurveyTimer extends Polymer.Element {
       static get is() {
         return 'survey-timer';
@@ -29,15 +37,15 @@
           seconds: {
             type: Number,
             readOnly: true,
-            value: 5,
+            value: 3,
           },
           timeout: Object,
         };
       }
 
       reset() {
-        this._setSeconds(60);
-        this.backCount();
+        this._setSeconds(3);
+        this.countBack();
       }
       /**
        * Instance of the element is created/upgraded. Use: initializing state,
@@ -53,23 +61,19 @@
        */
       ready() {
         super.ready();
-        this.backCount();
+        this.countBack();
+        /*  window.addEventListener('mousemove', this.showMoving); */
       }
 
-      backCount() {
-        this._setSeconds(this.segundos - 1);
+      countBack() {
+        this._setSeconds(this.seconds - 1);
         if (this.seconds == 0) {
-          this.dispatchEvent(new CustomEvent('finish-timer'));
+          this.dispatchEvent(new CustomEvent('time-finish'));
         } else {
           this.timeout = setTimeout(() => {
-            this.backCount();
+            this.countBack();
           }, 1000);
         }
-      }
-
-      disconnectedCallback() {
-        super.disconnectedCallback();
-        clearTimeout(this.timer);
       }
     }
 
