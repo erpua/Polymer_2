@@ -1,0 +1,69 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+
+<dom-module id="survey-option">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .called {
+        color: green;
+        font-size: 30px;
+      }
+
+      .uncalled {
+        color: grey;
+        font-size: 20px;
+      }
+    </style>
+
+    <div class$="[[computedClassProperty]]" on-click="calledOption">
+      <iron-icon icon="[[computedIconpProperty]]"></iron-icon>
+      <span>[[answer]]</span>
+    </div>
+  </template>
+
+  <script>
+    class SurveyOption extends Polymer.Element {
+      static get is() {
+        return 'survey-option';
+      }
+
+      static get properties() {
+        return {
+          answer: String,
+          id: Number,
+          called: Number,
+          computedClassProperty: {
+            type: String,
+            computed: '_calculateClass(called)',
+          },
+          computedIconpProperty: {
+            type: String,
+            //computed: '_calculateIcon(called)',
+          },
+        };
+      }
+
+      _calculateClass(called) {
+        if (called == this.id) {
+          return 'called';
+        }
+        return 'uncalled';
+      }
+
+      calledOption() {
+        this.dispatchEvent(
+          new CustomEvent('option-called', {
+            detail: {
+              id: this.id,
+            },
+          }),
+        );
+      }
+    }
+
+    window.customElements.define(SurveyOption.is, SurveyOption);
+  </script>
+</dom-module>

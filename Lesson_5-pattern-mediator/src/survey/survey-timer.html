@@ -1,0 +1,78 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+
+<dom-module id="survey-timer">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        padding: 5px;
+        font-size: 0.8em;
+        font-weight: bold;
+        background-color: rgb(233, 33, 99);
+        color: #fff;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+    </style>
+
+    Time left: [[seconds]]
+  </template>
+
+  <script>
+    class SurveyTimer extends Polymer.Element {
+      static get is() {
+        return 'survey-timer';
+      }
+
+      static get properties() {
+        return {
+          seconds: {
+            type: Number,
+            readOnly: true,
+            value: 5,
+          },
+          timeout: Object,
+        };
+      }
+
+      reset() {
+        this._setSeconds(60);
+        this.backCount();
+      }
+      /**
+       * Instance of the element is created/upgraded. Use: initializing state,
+       * set up event listeners, create shadow dom.
+       * @constructor
+       */
+      constructor() {
+        super();
+      }
+
+      /**
+       * Use for one-time configuration of your component after local DOM is initialized.
+       */
+      ready() {
+        super.ready();
+        this.backCount();
+      }
+
+      backCount() {
+        this._setSeconds(this.segundos - 1);
+        if (this.seconds == 0) {
+          this.dispatchEvent(new CustomEvent('finish-timer'));
+        } else {
+          this.timeout = setTimeout(() => {
+            this.backCount();
+          }, 1000);
+        }
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        clearTimeout(this.timer);
+      }
+    }
+
+    window.customElements.define(SurveyTimer.is, SurveyTimer);
+  </script>
+</dom-module>
