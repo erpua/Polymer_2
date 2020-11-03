@@ -1,0 +1,45 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+
+<dom-module id="two-way">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <p>Show name: {{name}}</p>
+    <button on-click="deleteName">Delete name</button>
+  </template>
+
+  <script>
+    /**
+     * `two-way` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class TwoWay extends Polymer.Element {
+      static get is() {
+        return 'two-way';
+      }
+
+      static get properties() {
+        return {
+          name: {
+            type: String,
+            notify: true,
+          },
+        };
+      }
+
+      deleteName() {
+        this.name = '';
+      }
+    }
+
+    window.customElements.define(TwoWay.is, TwoWay);
+  </script>
+</dom-module>
