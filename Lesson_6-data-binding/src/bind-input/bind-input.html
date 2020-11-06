@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+
+<dom-module id="bind-input">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <span>[[label]]:</span>
+    <input type="text" value="{{value::input}}" />
+  </template>
+
+  <script>
+    /**
+     * `bind-input` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class BindInput extends Polymer.Element {
+      static get is() {
+        return 'bind-input';
+      }
+
+      static get properties() {
+        return {
+          label: {
+            type: String,
+            value: '',
+          },
+          value: {
+            type: String,
+            value: '',
+            notify: true,
+          },
+        };
+      }
+    }
+
+    window.customElements.define(BindInput.is, BindInput);
+  </script>
+</dom-module>

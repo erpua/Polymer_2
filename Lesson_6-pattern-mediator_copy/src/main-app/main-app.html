@@ -1,7 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html" />
-<link rel="import" href="../../bower_components/paper-input/paper-input.html" />
-<link rel="import" href="../two-way.html" />
-<link rel="import" href="../bind-input/bind-input.html" />
+<link rel="import" href="../survey/survey-element.html" />
 
 <dom-module id="main-app">
   <template>
@@ -10,16 +8,7 @@
         display: block;
       }
     </style>
-
-    <paper-input label="your name" value="{{name}}"></paper-input>
-    <paper-input label="1 way binding" value="[[name]]"></paper-input>
-
-    <p>Input data: [[name]]</p>
-
-    <two-way name="{{name}}"></two-way>
-
-    <bind-input label="Type your name" value="{{name}}"></bind-input>
-    <input type="text" value="{{name::input}}" />
+    <survey-element></survey-element>
   </template>
 
   <script>
@@ -33,9 +22,9 @@
       }
       static get properties() {
         return {
-          name: {
+          prop1: {
             type: String,
-            value: '',
+            value: 'main-app',
           },
         };
       }

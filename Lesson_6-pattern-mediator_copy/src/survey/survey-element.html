@@ -1,0 +1,103 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+<link
+  rel="import"
+  href="../../bower_components/polymer/lib/elements/dom-if.html"
+/>
+<link
+  rel="import"
+  href="../../bower_components/polymer/lib/mixins/gesture-event-listeners.html"
+/>
+<link rel="import" href="./survey-questions.html" />
+<link rel="import" href="./survey-timer.html" />
+
+<dom-module id="survey-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      survey-timer {
+        user-select: none;
+        position: relative;
+      }
+    </style>
+
+    <survey-timer
+      id="timer"
+      on-time-finish="cancelSurvey"
+      on-track="drag"
+    ></survey-timer>
+
+    <template is="dom-if" if="[[!cancelled]]">
+      <survey-questions question="{{question}}"></survey-questions>
+    </template>
+
+    <template is="dom-if" if="[[cancelled]]">
+      <p>Drog timer to recover timer</p>
+    </template>
+  </template>
+
+  <script>
+    /**
+     * `survey-element` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    /*   class SurveyElement extends Polymer.Element   */
+    /* TU USE MIXIN GestureEventListener =>add  Polymer.GestureEventListeners( and Polymer.Element)*/
+    class SurveyElement extends Polymer.GestureEventListeners(Polymer.Element) {
+      static get is() {
+        return 'survey-element';
+      }
+
+      static get properties() {
+        return {
+          cancelled: {
+            type: Boolean,
+            value: false,
+          },
+          question: {
+            type: Object,
+            value: {
+              survey: 'Do you like Polymer 2?',
+              key: '"Polymer 2 is in YouTube" )) i like it',
+              options: ['Yes', 'No', 'Did not figure out yet'],
+            },
+          },
+        };
+      }
+
+      cancelSurvey() {
+        this.cancelled = true;
+      }
+
+      drag(e) {
+        if (!this.cancelled) {
+          return 0;
+        }
+        if (e.detail.state === 'end') {
+          this.$.timer.style.left = '0';
+          console.log(
+            'The state value has been changed BEFORE e.detail.dx >= 50',
+          );
+          if (e.detail.dx >= 50) {
+            this.cancelled = false;
+            this.$.timer.reset();
+            console.log(
+              'The state value has been changed AFTER e.detail.dx >= 50',
+            );
+          }
+        } else {
+          console.log(e.detail.dx);
+          this.$.timer.style.left = e.detail.dx + 'px';
+        }
+      }
+    }
+
+    window.customElements.define(SurveyElement.is, SurveyElement);
+  </script>
+</dom-module>
