@@ -3,6 +3,7 @@
   rel="import"
   href="../../bower_components/polymer/lib/elements/dom-repeat.html"
 />
+<link rel="import" href="../bind-input/bind-input.html" />
 <link rel="import" href="./survey-option.html" />
 
 <dom-module id="survey-questions">
@@ -23,6 +24,10 @@
       </survey-option>
     </template>
     <button on-click="showKey">Show the hidden key</button>
+
+    <h2>The other answer</h2>
+    <bind-input label="Wright something" value="{{otherAnswer}}"></bind-input>
+    <button on-click="addAnswer">Add</button>
   </template>
 
   <script>
@@ -42,11 +47,23 @@
             type: Number,
             value: null,
           },
+          otherAnswer: {
+            type: String,
+            otherAnswer: '',
+          },
         };
       }
 
       registerCalledOption(e) {
         this.called = e.detail.id;
+      }
+
+      addAnswer() {
+        /*         this.question.options.push(this.otherAnswer); */
+        //JS native is woring correctly, but doesn't manage thie binding process
+        this.push('question.options', this.otherAnswer);
+        this.called = this.question.options.length - 1;
+        this.otherAnswer = '';
       }
 
       showKey() {
