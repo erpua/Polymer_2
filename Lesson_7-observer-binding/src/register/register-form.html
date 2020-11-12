@@ -1,0 +1,73 @@
+<link rel="import" href="../bind-input/bind-input.html" />
+<link rel="import" href="../password-input/password-element.html" />
+
+<dom-module id="register-form">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <p>
+      <bind-input label="name" value="{{user.name}}"></bind-input>
+    </p>
+
+    <p>
+      <bind-input label="email" value="{{user.email}}"></bind-input>
+    </p>
+
+    <p>
+      <password-element></password-element>
+    </p>
+
+    <div class="note">
+      <h2>Showing register form data</h2>
+      <p>
+        <span>Name: [[user.name]]</span>
+      </p>
+      <p>
+        <span>Email: [[user.email]]</span>
+      </p>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `register-form` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class RegisterForm extends Polymer.Element {
+      static get is() {
+        return 'register-form';
+      }
+
+      static get properties() {
+        return {
+          user: {
+            type: String,
+            value: {
+              name: '',
+              password: '',
+              email: '',
+            },
+          },
+        };
+      }
+
+      static get observers() {
+        return ['_nameChanged(user.name)'];
+      }
+
+      _nameChanged(userName) {
+        console.log('The name changed for:', userName);
+      }
+    }
+
+    window.customElements.define(RegisterForm.is, RegisterForm);
+  </script>
+</dom-module>
