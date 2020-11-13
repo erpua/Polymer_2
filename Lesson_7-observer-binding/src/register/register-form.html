@@ -11,6 +11,7 @@
 
     <p>
       <bind-input label="name" value="{{user.name}}"></bind-input>
+      <button on-click="deleteName">Delete name</button>
     </p>
 
     <p>
@@ -55,16 +56,27 @@
               password: '',
               email: '',
             },
+            observer: '_observeUserChanging', //is going to work only one time
           },
         };
       }
 
       static get observers() {
-        return ['_nameChanged(user.name)'];
+        return ['_observeChangingName(user.name)'];
       }
 
-      _nameChanged(userName) {
+      _observeUserChanging() {
+        console.log('USER CHANGED');
+      }
+
+      _observeChangingName(userName) {
+        //is going to work all the times
         console.log('The name changed for:', userName);
+      }
+
+      deleteName() {
+        /*     this.user.name = '';//JS NATIVE */
+        this.set('user.name', ''); // Polymer 2
       }
     }
 
