@@ -1,11 +1,33 @@
 <link rel="import" href="../bind-input/bind-input.html" />
 <link rel="import" href="../password-input/password-element.html" />
+<link rel="import" href="../interests/interests-element.html" />
 
 <dom-module id="register-form">
   <template>
     <style>
       :host {
         display: block;
+      }
+
+      h1 {
+        font-size: 1.2em;
+      }
+
+      span {
+        display: inline-block;
+        width: 100px;
+      }
+
+      .note {
+        font-size: 0.8em;
+      }
+
+      .note h2 {
+        font-size: 1.2em;
+      }
+
+      .note p {
+        margin: 0 0 5px 0;
       }
     </style>
 
@@ -21,6 +43,12 @@
     <p>
       <password-element></password-element>
     </p>
+
+    <hr />
+
+    <interests-element></interests-element>
+
+    <hr />
 
     <div class="note">
       <h2>Showing register form data</h2>

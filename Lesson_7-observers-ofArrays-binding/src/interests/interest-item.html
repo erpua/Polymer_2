@@ -1,0 +1,58 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+<dom-module id="interest-item">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin: 5px;
+      }
+
+      span {
+        font-size: 0.8em;
+        position: relative;
+        top: 2px;
+      }
+
+      button {
+        font-size: 0.6em;
+        color: red;
+      }
+    </style>
+
+    <span>[[interest]]</span>
+    <button on-click="_deleteInterest">X</button>
+  </template>
+
+  <script>
+    /**
+     * `interest-item` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class InterestItem extends Polymer.Element {
+      static get is() {
+        return 'interest-item';
+      }
+
+      static get properties() {
+        return {
+          interest: String,
+          id: String,
+        };
+      }
+
+      _deleteInterest() {
+        this.dispatchEvent(
+          new CustomEvent('delete-interest', {
+            detail: { id: this.id },
+          }),
+        );
+      }
+    }
+
+    window.customElements.define(InterestItem.is, InterestItem);
+  </script>
+</dom-module>

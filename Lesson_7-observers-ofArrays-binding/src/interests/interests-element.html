@@ -1,0 +1,110 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+<link
+  rel="import"
+  href="../../bower_components/polymer/lib/elements/dom-repeat.html"
+/>
+<link
+  rel="import"
+  href="../../bower_components/polymer/lib/elements/dom-if.html"
+/>
+<link rel="import" href="./interest-item.html" />
+
+<dom-module id="interests-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <template is="dom-if" if="{{!max}}">
+      Type your interest / (s) and press Enter:
+      <input
+        type="text"
+        value="{{interest::input}}"
+        on-keypress="_detectEnter"
+      />
+    </template>
+
+    <template is="dom-if" if="{{max}}"
+      >You have achived maximum of inputs. Delete one in order to add more
+    </template>
+
+    <template is="dom-repeat" items="{{interests}}" as="interestItem">
+      <interest-item
+        interest="[[interestItem]]"
+        id="[[index]]"
+        on-delete-interest="_deleteInterest"
+      ></interest-item>
+    </template>
+
+    <button on-click="_changeArrayBoxName">Change Array box Name</button>
+  </template>
+
+  <script>
+    /**
+     * `interests-element` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class InterestElement extends Polymer.Element {
+      static get is() {
+        return 'interests-element';
+      }
+
+      static get properties() {
+        return {
+          interests: {
+            type: Array,
+            value: [],
+          },
+          interest: {
+            type: String,
+            value: '',
+          },
+          max: {
+            type: Boolean,
+            value: false,
+          },
+        };
+      }
+
+      static get observers() {
+        return ['_observeInterestsChanges(interests.splices)'];
+      }
+
+      _observeInterestsChanges(splices) {
+        if (splices && splices.indexSplices) {
+          console.log('splices', splices);
+          if (splices.indexSplices[0].object.length >= 3) {
+            this.max = true;
+          } else {
+            this.max = false;
+          }
+        }
+      }
+
+      _detectEnter(e) {
+        if (e.charCode == 13 && !this.max) {
+          this.push('interests', this.interest);
+          this.interest = '';
+        }
+        /* console.log('newStack: ', this.interests); */
+      }
+
+      _deleteInterest(e) {
+        console.log('e.detail.id:', e.detail.id);
+        this.splice('interests', e.detail.id, 1);
+      }
+
+      _changeArrayBoxName() {
+        this.set('interests.0', 'set new name');
+      }
+    }
+
+    window.customElements.define(InterestElement.is, InterestElement);
+  </script>
+</dom-module>
