@@ -31,6 +31,8 @@
       }
     </style>
 
+    <hr />
+
     <p>
       <bind-input label="name" value="{{user.name}}"></bind-input>
       <button on-click="deleteName">Delete name</button>
@@ -61,6 +63,8 @@
     </div>
   </template>
 
+  <hr />
+
   <script>
     /**
      * `register-form` Description
@@ -90,11 +94,18 @@
       }
 
       static get observers() {
-        return ['_observeChangingName(user.name)'];
+        return [
+          '_observeChangingName(user.name)',
+          '_observeUserChanged(user.*)',
+        ];
       }
 
       _observeUserChanging() {
         console.log('USER CHANGED');
+      }
+
+      _observeUserChanged(changeRecord) {
+        console.log('changeRecord:', changeRecord);
       }
 
       _observeChangingName(userName) {

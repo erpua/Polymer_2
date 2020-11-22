@@ -38,7 +38,7 @@
       ></interest-item>
     </template>
 
-    <button on-click="_changeArrayBoxName">Change Array box Name</button>
+    <button on-click="_changeArrayBoxName">Change the first interest</button>
   </template>
 
   <script>
@@ -73,7 +73,10 @@
       }
 
       static get observers() {
-        return ['_observeInterestsChanges(interests.splices)'];
+        return [
+          '_observeInterestsChanges(interests.splices)',
+          '_observeInterestsBoxesChanges(interests.*)',
+        ];
       }
 
       _observeInterestsChanges(splices) {
@@ -85,6 +88,13 @@
             this.max = false;
           }
         }
+      }
+
+      _observeInterestsBoxesChanges(changeRecord) {
+        console.log(
+          'change Record of the box of Array in interests element: ',
+          changeRecord,
+        );
       }
 
       _detectEnter(e) {
@@ -101,7 +111,9 @@
       }
 
       _changeArrayBoxName() {
-        this.set('interests.0', 'set new name');
+        if (this.interests.length > 0) {
+          this.set('interests.0', 'set new name');
+        }
       }
     }
 
