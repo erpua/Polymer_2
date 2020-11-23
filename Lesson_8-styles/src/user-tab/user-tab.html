@@ -1,0 +1,53 @@
+<link rel="import" href="../shared-styles.html" />
+<dom-module id="user-tab">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+      .profile,
+      i {
+        font-size: 2.9em;
+      }
+
+      ::slotted(*) {
+        background-color: #fff;
+      }
+
+      ::slotted(p) {
+        background-color: coral;
+      }
+    </style>
+
+    <div>
+      <section><slot></slot></section>
+      <div class="profile"><slot name="profile"></slot></div>
+      <hr />
+      <i>Twitter <slot name="twitter"></slot></i>
+      <p>This is shared styles</p>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `user-tab` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class UserTab extends Polymer.Element {
+      static get is() {
+        return 'user-tab';
+      }
+
+      static get properties() {
+        return {};
+      }
+    }
+
+    window.customElements.define(UserTab.is, UserTab);
+  </script>
+</dom-module>

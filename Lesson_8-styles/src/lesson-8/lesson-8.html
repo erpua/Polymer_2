@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+<link rel="import" href="../user-tab/user-tab.html" />
 
 <dom-module id="lesson-8">
   <template>
@@ -10,7 +11,13 @@
         padding: 10px;
       }
     </style>
+    <slot></slot>
     <h2>Hello [[prop1]]!</h2>
+    <user-tab
+      >Yevgeniy' tab
+      <p slot="profile">Fullstack developer</p>
+      <span slot="twitter">@mindset</span>
+    </user-tab>
   </template>
 
   <script>
