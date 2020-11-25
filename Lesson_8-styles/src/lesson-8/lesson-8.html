@@ -1,5 +1,15 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html" />
 <link rel="import" href="../user-tab/user-tab.html" />
+<link
+  rel="import"
+  href="../../bower_components/paper-spinner/paper-spinner.html"
+/>
+<link
+  rel="import"
+  href="../../bower_components/paper-slider/paper-slider.html"
+/>
+
+<link rel="import" href="../password-strength-bar.html" />
 
 <dom-module id="lesson-8">
   <template>
@@ -9,6 +19,23 @@
         background-color: #ddd;
         border-radius: 10px;
         padding: 10px;
+
+        --paper-spinner-layer-2-color: #fff;
+        --paper-spinner-layer-1-color: greenyellow;
+        --paper-spinner-layer-3-color: pink;
+        --paper-slider-knob-start-color: red;
+        --paper-slider-knob-color: green;
+        --password-strength-bar-color: #3f3a3a;
+
+        --paper-slider-input: {
+          background-color: yellow;
+          padding: 10px;
+          width: 90px;
+        }
+      }
+
+      paper-spinner {
+        --paper-spinner-stroke-width: 8px;
       }
     </style>
     <slot></slot>
@@ -18,6 +45,19 @@
       <p slot="profile">Fullstack developer</p>
       <span slot="twitter">@mindset</span>
     </user-tab>
+
+    <paper-spinner active></paper-spinner>
+    <paper-slider
+      min="0"
+      max="10"
+      value="{{value}}"
+      pin
+      editable
+    ></paper-slider>
+
+    <p>[[value]]</p>
+
+    <password-strength-bar strength="{{value}}"></password-strength-bar>
   </template>
 
   <script>
@@ -31,9 +71,9 @@
       }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'lesson-8',
+          value: {
+            type: Number,
+            value: 5,
           },
         };
       }

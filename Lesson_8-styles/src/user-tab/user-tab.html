@@ -1,4 +1,8 @@
 <link rel="import" href="../shared-styles.html" />
+<link
+  rel="import"
+  href="../../bower_components/paper-spinner/paper-spinner.html"
+/>
 <dom-module id="user-tab">
   <template>
     <style include="shared-styles">
@@ -19,6 +23,8 @@
         background-color: coral;
       }
     </style>
+
+    <paper-spinner active></paper-spinner>
 
     <div>
       <section><slot></slot></section>

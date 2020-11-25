@@ -2,7 +2,9 @@
   "name": "Lesson_8-styles",
   "main": "index.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0"
+    "polymer": "Polymer/polymer#^2.0.0",
+    "paper-spinner": "PolymerElements/paper-spinner#2.1.0",
+    "paper-slider": "PolymerElements/paper-slider#2.0.7"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
