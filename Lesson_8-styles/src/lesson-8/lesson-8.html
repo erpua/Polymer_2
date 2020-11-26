@@ -25,17 +25,30 @@
         --paper-spinner-layer-3-color: pink;
         --paper-slider-knob-start-color: red;
         --paper-slider-knob-color: green;
-        --password-strength-bar-color: #3f3a3a;
+        --password-strength-bar-color: rgb(215, 216, 137);
 
         --paper-slider-input: {
           background-color: yellow;
           padding: 10px;
           width: 90px;
         }
+        --password-strength-bar-items: {
+          width: 14px;
+          height: 18px;
+          border-radius: 6px;
+          box-shadow: 2px 2px 2px #fff;
+        }
       }
 
       paper-spinner {
         --paper-spinner-stroke-width: 8px;
+      }
+
+      password-strength-bar {
+        --password-strength-bar-box: {
+          border-radius: 10px;
+          padding: 16px;
+        }
       }
     </style>
     <slot></slot>
