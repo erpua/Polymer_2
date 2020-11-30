@@ -1,0 +1,38 @@
+<link rel="import" href="./bind-input.html" />
+
+<dom-module id="bind-input-enter">
+  <script>
+    /**
+     * `bind-input-enter` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class BindInputEnter extends BindInput {
+      static get is() {
+        return 'bind-input-enter';
+      }
+
+      static get properties() {
+        return {};
+      }
+
+      ready() {
+        super.ready();
+        this.addEventListener('keypress', (e) => {
+          if (e.charCode == 13) {
+            this.dispatchEvent(
+              new CustomEvent('enter-pressed', {
+                detail: { value: this.value },
+              }),
+            );
+          }
+        });
+      }
+    }
+
+    window.customElements.define(BindInputEnter.is, BindInputEnter);
+  </script>
+</dom-module>

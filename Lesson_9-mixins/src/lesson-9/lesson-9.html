@@ -1,4 +1,5 @@
-<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html" />
+<link rel="import" href="../bind-input/bind-input-enter.html" />
 
 <dom-module id="lesson-9">
   <template>
@@ -7,7 +8,11 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <bind-input-enter
+      label="Write something"
+      value="ssssss"
+      on-enter-pressed="_captureValue"
+    ></bind-input-enter>
   </template>
 
   <script>
@@ -16,14 +21,20 @@
      * @polymer
      */
     class Lesson9 extends Polymer.Element {
-      static get is() { return 'lesson-9'; }
+      static get is() {
+        return 'lesson-9';
+      }
       static get properties() {
         return {
           prop1: {
             type: String,
-            value: 'lesson-9'
-          }
+            value: 'lesson-9',
+          },
         };
+      }
+
+      _captureValue(e) {
+        console.log('e.detail', e.detail);
       }
     }
 
