@@ -1,5 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html" />
 <link rel="import" href="../bind-input/bind-input-enter.html" />
+<link rel="import" href="../input-elements/input-text.html" />
+<link rel="import" href="../input-elements/input-password.html" />
 
 <dom-module id="lesson-9">
   <template>
@@ -13,6 +15,15 @@
       value="ssssss"
       on-enter-pressed="_captureValue"
     ></bind-input-enter>
+
+    <hr />
+
+    <input-text
+      label="label"
+      value="This is input text"
+      foo="test"
+    ></input-text>
+    <input-password label="label" value="password"></input-password>
   </template>
 
   <script>

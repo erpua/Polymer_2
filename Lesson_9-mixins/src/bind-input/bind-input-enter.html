@@ -1,4 +1,5 @@
 <link rel="import" href="./bind-input.html" />
+<link rel="import" href="../utilities/event-mixin.html" />
 
 <dom-module id="bind-input-enter">
   <script>
@@ -10,7 +11,7 @@
      * @polymer
      * @extends {Polymer.Element}
      */
-    class BindInputEnter extends BindInput {
+    class BindInputEnter extends EventMixin(BindInput) {
       static get is() {
         return 'bind-input-enter';
       }
@@ -19,6 +20,34 @@
         return {};
       }
 
+      /* With MIXIN */
+
+      ready() {
+        super.ready();
+        this.addEventListener('keypress', (e) => {
+          if (e.charCode == 13) {
+            this.fire('enter-pressed', {
+              value: this.value,
+            });
+          }
+        });
+      }
+
+      /*   ready() {
+        super.ready();
+        this.addEventListener('keypress', (e) => {
+          if (e.charCode == 13) {
+            this.fire('enter-pressed', {
+              value: 'the value is => ' + this.value, //concatination
+            });
+          }
+        });
+      } */
+
+      /* 
+    
+    WITHOUT MIXIN
+    
       ready() {
         super.ready();
         this.addEventListener('keypress', (e) => {
@@ -30,7 +59,7 @@
             );
           }
         });
-      }
+      } */
     }
 
     window.customElements.define(BindInputEnter.is, BindInputEnter);
