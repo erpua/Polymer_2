@@ -1,5 +1,7 @@
 <script>
-  const InputMixin = (superClass) => {
+  window.GoIt = window.GoIt || {};
+  //
+  GoIt.InputMixin = (superClass) => {
     return class extends superClass {
       static get properties() {
         return {
@@ -13,6 +15,10 @@
             notify: true,
           },
         };
+      }
+
+      foo2() {
+        //
       }
     };
   };
