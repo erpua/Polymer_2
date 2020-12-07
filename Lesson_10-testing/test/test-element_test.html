@@ -1,18 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes"
+    />
 
     <title>test-element test</title>
 
     <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
 
-    <link rel="import" href="../test-element.html">
+    <link rel="import" href="../test-element.html" />
   </head>
   <body>
-
     <test-fixture id="BasicTestFixture">
       <template>
         <test-element></test-element>
@@ -27,7 +29,6 @@
 
     <script>
       suite('test-element', () => {
-
         test('instantiating the element with default properties works', () => {
           const element = fixture('BasicTestFixture');
           assert.equal(element.prop1, 'test-element');
@@ -44,9 +45,7 @@
           const elementHeader = elementShadowRoot.querySelector('h2');
           assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
         });
-
       });
     </script>
-
   </body>
 </html>
