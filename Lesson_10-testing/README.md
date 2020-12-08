@@ -17,3 +17,7 @@ possible error:
 Polymer news:
 
 - https://github.com/Polymer/news
+
+TIPS for similar project if error:
+
+"Could not find WCT plugin istanbul" => ./node_modules/web-component-tester/bin/wct/ -l chrome
