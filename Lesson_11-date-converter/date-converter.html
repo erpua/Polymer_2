@@ -1,0 +1,49 @@
+<dom-module id="date-converter">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    [[date]]
+  </template>
+
+  <script>
+    /**
+     * `date-converter`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class DateConverter extends Polymer.Element {
+      static get is() {
+        return 'date-converter';
+      }
+      static get properties() {
+        return {
+          timestamp: {
+            type: Number,
+          },
+          date: {
+            type: String,
+            value: '',
+            readOnly: true,
+            computed: '_timestampToString(timestamp, format)',
+          },
+          format: {
+            type: String,
+            value: 'en',
+          },
+        };
+      }
+
+      _timestampToString(timestamp, format) {
+        return timestamp;
+      }
+    }
+
+    window.customElements.define(DateConverter.is, DateConverter);
+  </script>
+</dom-module>
